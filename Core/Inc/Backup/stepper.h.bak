@@ -1,0 +1,22 @@
+/*
+ * stepper.h
+ *
+ *  Created on: Feb 7, 2024
+ *      Author: sameh
+ */
+
+#ifndef STEPPER_H_
+#define STEPPER_H_
+/*================= includes =================*/
+#include "gpio.h"
+#include "Timer.h"
+/*================= Macros =================*/
+
+/*================= User defined data types =================*/
+
+/*================= Software interfaces =================*/
+Std_ReturnStatus stepper_gen_steps(TIM_TypeDef *TIMER,PWM_config* PWM_cfg ,uint32_t sys_clk,
+		                           uint32_t steps_number,Pin_cfg *d_pin, uint8_t direction);
+
+
+#endif /* STEPPER_H_ */

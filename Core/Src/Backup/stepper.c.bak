@@ -1,0 +1,55 @@
+/*
+ * stepper.c
+ *
+ *  Created on: Feb 7, 2024
+ *      Author: sameh
+ */
+
+
+#include "stepper.h"
+
+uint32_t steps = 0;
+uint32_t stepper_f = 0;
+
+
+/*
+ * @brief Generate the required steps according to the inputs.
+ * @param TIMER   : a pointer to TIM_TypeDef which contains
+ * 		  the registers the required timer.
+ * @param PWM_cfg : a pointer to PWM_config which contains
+ * 		  the configurations of the required output signal.
+ * @param sys_clk  : the running system clock frequency.
+ * @param steps num: Number of required steps.
+ * @param d_pin    : a pointer to Pin_cfg which contains the
+ *                   direction pin configuration.
+ * @param direction: Forward (1) or reverse (0).
+ * @ret   return error status according to the function
+ * 		  behavior.
+ * 		  E_OK -> everything is OK.
+ * 		  E_NOK-> something wrong happened.
+ */
+
+
+
+Std_ReturnStatus stepper_gen_steps(TIM_TypeDef *TIMER,PWM_config* PWM_cfg ,uint32_t sys_clk,
+		                           uint32_t steps_number,Pin_cfg *d_pin, uint8_t direction)
+{
+	if((NULL == TIMER) || (NULL == PWM_cfg) || (NULL == d_pin))
+	{
+		return E_NOK;
+	}
+	else
+	{
+		stepper_f = 1;
+		steps = steps_number;
+		if(TIMER == TIM1){NVIC_EnableIRQ(TIM1_CC_IRQn);}
+		else if(TIMER == TIM2){NVIC_EnableIRQ(TIM2_IRQn);}
+		else if(TIMER == TIM3){NVIC_EnableIRQ(TIM3_IRQn);}
+		else if(TIMER == TIM4){NVIC_EnableIRQ(TIM4_IRQn);}
+		PWM_GEN(TIMER, PWM_cfg, sys_clk);
+		GPIO_Init(d_pin);
+		GPIO_Write_Pin(d_pin->Gpio, d_pin->pin_no, direction);
+
+		return E_OK;
+	}
+}

@@ -1,0 +1,28 @@
+/*
+ * pid.c
+ *
+ *  Created on: Feb 7, 2024
+ *      Author: sameh
+ */
+
+float err, prev_err = 0, diff, integral, result;
+int kp = 1, ki = 0, kd = 1;
+
+
+int pid_calc(int target, int actual)
+{
+	err = target - actual;
+	diff = err - prev_err;
+	integral += err;
+	result = kp*err + kd*diff + ki*integral ;
+	if(result > 1000)
+	{
+		result = 1000;
+	}
+	else if(result < 0)
+	{
+		result = 0;
+	}
+	prev_err = err;
+	return result;
+}

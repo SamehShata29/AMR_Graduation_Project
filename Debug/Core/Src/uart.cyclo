@@ -1,0 +1,2 @@
+../Core/Src/uart.c:12:18:USART_enable	6
+../Core/Src/uart.c:45:6:USART_send_char	2

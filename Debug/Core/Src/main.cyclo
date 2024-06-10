@@ -1,0 +1,9 @@
+../Core/Src/main.cpp:104:5:int main()	14
+../Core/Src/main.cpp:337:6:void SystemClock_Config()	3
+../Core/Src/main.cpp:379:13:void MX_USART1_UART_Init()	2
+../Core/Src/main.cpp:410:13:void MX_DMA_Init()	1
+../Core/Src/main.cpp:431:13:void MX_GPIO_Init()	1
+../Core/Src/main.cpp:477:6:void HAL_GPIO_EXTI_Callback(uint16_t)	13
+../Core/Src/main.cpp:539:6:void pins_init()	1
+../Core/Src/main.cpp:591:6:void ext_pin()	1
+../Core/Src/main.cpp:642:6:void Error_Handler()	1

@@ -1,0 +1,5 @@
+D:/Graduation Project/embedded/stm32/CMSIS/Include/core_cm4.h:1684:22:__NVIC_EnableIRQ	2
+../Core/Src/Timer.c:26:18:PWM_GEN	24
+../Core/Src/Timer.c:558:18:INT_GEN_ms	13
+../Core/Src/Timer.c:631:6:tdelay_ms	2
+../Core/Src/Timer.c:641:6:encoder_mode	1

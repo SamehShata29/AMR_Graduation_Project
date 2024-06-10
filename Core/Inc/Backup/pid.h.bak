@@ -1,0 +1,21 @@
+/*
+ * pid.h
+ *
+ *  Created on: Feb 7, 2024
+ *      Author: sameh
+ */
+
+#ifndef PID_H_
+#define PID_H_
+
+/*================= includes =================*/
+#include "gpio.h"
+#include "Timer.h"
+/*================= Macros =================*/
+
+/*================= User defined data types =================*/
+
+/*================= Software interfaces =================*/
+int pid_calc(int target, int actual);
+
+#endif /* PID_H_ */

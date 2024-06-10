@@ -1,0 +1,5 @@
+D:/Graduation Project/embedded/stm32/CMSIS/Include/core_cm4.h:1684:22:__NVIC_EnableIRQ	16	static,ignoring_inline_asm
+../Core/Src/Timer.c:26:18:PWM_GEN	480	static
+../Core/Src/Timer.c:558:18:INT_GEN_ms	32	static
+../Core/Src/Timer.c:631:6:tdelay_ms	16	static
+../Core/Src/Timer.c:641:6:encoder_mode	64	static

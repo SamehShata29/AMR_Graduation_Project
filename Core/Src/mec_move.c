@@ -1,0 +1,194 @@
+/*
+ * mec_move.c
+ *
+ *  Created on: Feb 13, 2024
+ *      Author: sameh
+ */
+
+#include  "mec_move.h"
+#include "Timer.h"
+
+extern PWM_config pwm1;
+extern PWM_config pwm2;
+extern PWM_config pwm3;
+extern PWM_config pwm4;
+
+int read = 0;
+
+static void pwm_(void)
+{
+	//M1
+	PWM_GEN(TIM2, &pwm1, 16000000);
+	//M2
+	PWM_GEN(TIM2, &pwm2, 16000000);
+	//M3
+	PWM_GEN(TIM2, &pwm3, 16000000);
+	//M4
+	PWM_GEN(TIM2, &pwm4, 16000000);
+}
+
+void backward(int target, int position)
+{
+
+	//M2 and M4 same direciton
+	GPIO_Write_Pin(GPIOB, 3, GPIO_HIGH);
+	GPIO_Write_Pin(GPIOB, 4, GPIO_HIGH);
+	//M1 and M3 same direction
+	GPIO_Write_Pin(GPIOB, 1, GPIO_LOW);
+	GPIO_Write_Pin(GPIOB, 2, GPIO_LOW);
+
+//	//PID
+//	read = pid_calc(target, position);
+//	pwm1.duty_cycle = read;
+////	pwm2.duty_cycle = read;
+////	pwm3.duty_cycle = read;
+////	pwm4.duty_cycle = read;
+//
+	pwm_();
+}
+void forward(int target, int position)
+{
+	//M2 and M4 same direciton
+	GPIO_Write_Pin(GPIOB, 3, GPIO_LOW);
+	GPIO_Write_Pin(GPIOB, 4, GPIO_LOW);
+	//M1 and M3 same direction
+	GPIO_Write_Pin(GPIOB, 1, GPIO_HIGH);
+	GPIO_Write_Pin(GPIOB, 2, GPIO_HIGH);
+//	//PID
+//	read = pid_calc(target, position);
+//	pwm1.duty_cycle = read;
+////	pwm2.duty_cycle = read;
+////	pwm3.duty_cycle = read;
+////	pwm4.duty_cycle = read;
+//
+	pwm_();
+}
+
+void side_left(int target, int position)
+{
+	//M2 and M1 same direciton
+	GPIO_Write_Pin(GPIOB, 1, GPIO_HIGH);
+	GPIO_Write_Pin(GPIOB, 4, GPIO_HIGH);
+	//M4 and M3 same direction
+	GPIO_Write_Pin(GPIOB, 3, GPIO_HIGH);
+	GPIO_Write_Pin(GPIOB, 2, GPIO_HIGH);
+	//PID
+//	read = pid_calc(target, position);
+//	pwm1.duty_cycle = read;
+////	pwm2.duty_cycle = read;
+////	pwm3.duty_cycle = read;
+////	pwm4.duty_cycle = read;
+//
+	pwm_();
+}
+
+void side_right(int target, int position)
+{
+	//M2 and M1 same direciton
+	GPIO_Write_Pin(GPIOB, 1, GPIO_LOW);
+	GPIO_Write_Pin(GPIOB, 4, GPIO_LOW);
+	//M4 and M3 same direction
+	GPIO_Write_Pin(GPIOB, 3, GPIO_LOW);
+	GPIO_Write_Pin(GPIOB, 2, GPIO_LOW);
+	//PID
+//	read = pid_calc(target, position);
+//	pwm1.duty_cycle = read;
+////	pwm2.duty_cycle = read;
+////	pwm3.duty_cycle = read;
+////	pwm4.duty_cycle = read;
+//
+	pwm_();
+}
+
+void rotate_left(int target, int position)
+{
+	//all same direciton
+	GPIO_Write_Pin(GPIOB, 1, GPIO_LOW);
+	GPIO_Write_Pin(GPIOB, 4, GPIO_LOW);
+	GPIO_Write_Pin(GPIOB, 3, GPIO_HIGH);
+	GPIO_Write_Pin(GPIOB, 2, GPIO_HIGH);
+	//PID
+//	read = pid_calc(target, position);
+//	pwm1.duty_cycle = read;
+////	pwm2.duty_cycle = read;
+////	pwm3.duty_cycle = read;
+////	pwm4.duty_cycle = read;
+//
+	pwm_();
+}
+
+void rotate_right(int target, int position)
+{
+	//all same direciton
+	GPIO_Write_Pin(GPIOB, 1, GPIO_HIGH);
+	GPIO_Write_Pin(GPIOB, 4, GPIO_HIGH);
+	GPIO_Write_Pin(GPIOB, 3, GPIO_LOW);
+	GPIO_Write_Pin(GPIOB, 2, GPIO_LOW);
+	//PID
+//	read = pid_calc(target, position);
+//	pwm1.duty_cycle = read;
+////	pwm2.duty_cycle = read;
+////	pwm3.duty_cycle = read;
+////	pwm4.duty_cycle = read;
+//
+	pwm_();
+}
+
+void diagonal_right_fw(int target, int position)
+{
+	//2 motors off
+	GPIO_Write_Pin(GPIOB, 1, GPIO_LOW);
+	GPIO_Write_Pin(GPIOB, 2, GPIO_LOW);
+	pwm1.duty_cycle = 0;
+	pwm2.duty_cycle = 0;
+	//2 motors on
+	GPIO_Write_Pin(GPIOB, 4, GPIO_LOW);
+	GPIO_Write_Pin(GPIOB, 3, GPIO_LOW);
+
+	pwm_();
+}
+
+void diagonal_right_bw(int target, int position)
+{
+	//2 motors off
+	GPIO_Write_Pin(GPIOB, 1, GPIO_LOW);
+	GPIO_Write_Pin(GPIOB, 4, GPIO_HIGH);
+	//2 motors on
+	GPIO_Write_Pin(GPIOB, 2, GPIO_LOW);
+	GPIO_Write_Pin(GPIOB, 3, GPIO_LOW);
+	pwm3.duty_cycle = 0;
+	pwm4.duty_cycle = 0;
+
+
+	pwm_();
+}
+
+
+void diagonal_left_fw(int target, int position)
+{
+	//2 motors off
+	GPIO_Write_Pin(GPIOB, 1, GPIO_HIGH);
+	GPIO_Write_Pin(GPIOB, 4, GPIO_LOW);
+	//2 motors on
+	GPIO_Write_Pin(GPIOB, 2, GPIO_HIGH);
+	GPIO_Write_Pin(GPIOB, 3, GPIO_LOW);
+	pwm3.duty_cycle = 0;
+	pwm4.duty_cycle = 0;
+
+
+	pwm_();
+}
+
+void diagonal_left_bw(int target, int position)
+{
+	//2 motors off
+	GPIO_Write_Pin(GPIOB, 1, GPIO_HIGH);
+	GPIO_Write_Pin(GPIOB, 4, GPIO_LOW);
+	pwm1.duty_cycle = 0;
+	pwm2.duty_cycle = 0;
+	//2 motors on
+	GPIO_Write_Pin(GPIOB, 2, GPIO_HIGH);
+	GPIO_Write_Pin(GPIOB, 3, GPIO_HIGH);
+
+	pwm_();
+}

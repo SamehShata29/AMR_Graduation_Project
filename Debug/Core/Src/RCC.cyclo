@@ -1,0 +1,5 @@
+../Core/Src/RCC.c:21:18:OSC_CFG_init	10
+../Core/Src/RCC.c:82:18:CLK_CFG_init	8
+../Core/Src/RCC.c:138:18:PLL_CFG_init	9
+../Core/Src/RCC.c:188:6:HSE25Mhz_84MHzOUT	1
+../Core/Src/RCC.c:220:6:RESET_DEFAULT_CLCK	3

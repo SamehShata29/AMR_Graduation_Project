@@ -1,0 +1,6 @@
+D:/Graduation Project/embedded/stm32/CMSIS/Include/core_cm4.h:1684:22:__NVIC_EnableIRQ	16	static,ignoring_inline_asm
+../Core/Src/gpio.c:20:18:GPIO_Init	16	static
+../Core/Src/gpio.c:85:18:GPIO_Write_Pin	16	static
+../Core/Src/gpio.c:114:18:GPIO_Toggle_Pin	16	static
+../Core/Src/gpio.c:135:9:GPIO_Read_Pin	16	static
+../Core/Src/gpio.c:157:18:GPIO_Set_EXTI	56	static
